@@ -13,7 +13,7 @@ import io.netty.handler.codec.string.StringDecoder;
 
 public class TimeClient {
 	
-	 public void connect(int port, String host) throws Exception {
+	 public  void connect(int port, String host) throws Exception {
         // 配置客户端NIO线程组
         EventLoopGroup group = new NioEventLoopGroup();
         try {
@@ -40,7 +40,7 @@ public class TimeClient {
     }
 
     public static void main(String[] args) throws Exception {
-        new TimeClient().connect(8081, "127.0.0.1");
+        new TimeClient().connect(50864, "192.168.163.180");
     }
 
 }

@@ -15,15 +15,15 @@ import io.netty.util.concurrent.DefaultThreadFactory;
 public class TimeServer {
 	
 	public void bind(int port) throws Exception{
-		EventLoopGroup bossGroup = new NioEventLoopGroup(4, new DefaultThreadFactory("server1", true));
-		EventLoopGroup workerGroup = new NioEventLoopGroup(32, new DefaultThreadFactory("server2", true));
+		EventLoopGroup bossGroup = new NioEventLoopGroup(2, new DefaultThreadFactory("server1", true));
+		EventLoopGroup workerGroup = new NioEventLoopGroup(4, new DefaultThreadFactory("server2", true));
 		
 		try {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup,workerGroup)
 			.channel(NioServerSocketChannel.class)
 			.childHandler(new ChildChannelHandler())
-			.option(ChannelOption.SO_BACKLOG, 1024)//设置每行长度1024
+			.option(ChannelOption.SO_BACKLOG, 10240)//设置每行长度1024
 			.childOption(ChannelOption.SO_KEEPALIVE, true);
 			
 			//绑定端口
@@ -44,7 +44,7 @@ public class TimeServer {
 		@Override
 		protected void initChannel(SocketChannel paramC) throws Exception {
 			// TODO Auto-generated method stub
-			paramC.pipeline().addLast(new LineBasedFrameDecoder(1024));
+			paramC.pipeline().addLast(new LineBasedFrameDecoder(10240));
 			paramC.pipeline().addLast(new StringDecoder());
 			paramC.pipeline().addLast(new TimeServerHandler());
 		}

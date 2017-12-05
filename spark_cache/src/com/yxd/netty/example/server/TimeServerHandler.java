@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.util.HashMap;
+
+import org.apache.flume.thrift.ThriftFlumeEvent;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -21,14 +24,16 @@ public class TimeServerHandler extends ChannelHandlerAdapter{
 	    CharsetDecoder decoder = Charset.forName("UTF-8").newDecoder();
 		CharBuffer charBuffer = decoder.decode(bbb);
 		String body = charBuffer.toString();*/
+		//ThriftFlumeEvent tfe = new ThriftFlumeEvent(new HashMap<String,String>(),(ByteBuffer) msg);
 		String body = (String)msg;
-		System.out.println("server body: "+body+"  counter: "+ ++counter);
-		String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body)?
+		System.out.println(body);
+		//System.out.println("server body: "+ body +"  counter: "+ ++counter);
+		/*String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body)?
 				new java.util.Date(System.currentTimeMillis()).toString():"BADY ORDER";
 		currentTime = currentTime+ System.getProperty("line.separator");
 		ByteBuf resp = Unpooled.copiedBuffer(currentTime.getBytes());
 		//ctx.writeAndFlush(resp);
-		ctx.write(resp);
+		ctx.write(resp);*/
 	}
 	
 	@Override
