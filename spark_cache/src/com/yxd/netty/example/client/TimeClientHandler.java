@@ -20,17 +20,19 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
 
     public TimeClientHandler() {
         req = ("headerKey2value2-2�2017-12-04 09:56:49,102 R0171204095649102277931393162622 [com.portal.service.PortalService.access:30] DEBUG 【请求】：{"+ System.getProperty("line.separator")).getBytes();
-        select = ("#@#select count(*) from weblogs "+ System.getProperty("line.separator")).getBytes();
+        //select = ("#@#select * from weblogs where log_level = 'DEBUG' limit 10 "+ System.getProperty("line.separator")).getBytes();
+        select = ("#@#select count(*) from weblogs  "+ System.getProperty("line.separator")).getBytes();
+
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-       /*ByteBuf message = null;
-       for (int i = 0; i < 1; i++) {
+       ByteBuf message = null;
+       for (int i = 0; i < 2; i++) {
     	   message = Unpooled.buffer(req.length);
     	   message.writeBytes(req);
            ctx.writeAndFlush(message);
-       }*/
+       }
        //发送查询语句
        ByteBuf selectBB = null;
        selectBB = Unpooled.buffer(select.length);

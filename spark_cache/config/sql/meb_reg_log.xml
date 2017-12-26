@@ -1,0 +1,27 @@
+<!--注册日志模块-->
+<dataset>
+	
+	<sql name="getRegLogInfo" memo="获取注册日志信息">
+		SELECT id,uid,operate_system,os_version,regcha_code,channel_version,
+		phone_type,imei_code,longitude,latitude,ip,canton_code,reg_time,device_name
+		FROM meb_log_reg mlr
+		WHERE mlr.isvalid = 1
+		$dynamicsql
+	</sql>
+	<sql name="getRegLogList" memo="获取注册日志列表">
+		SELECT id,uid,operate_system,os_version,regcha_code,channel_version,
+		phone_type,imei_code,longitude,latitude,ip,canton_code,reg_time,device_name
+		FROM meb_log_reg mlr 
+		WHERE 1 = 1
+		$dynamicsql
+		order by reg_time desc $limit
+	</sql>
+	<sql name="getRegLogListCount" memo="获取注册日志列表_计数">
+		SELECT count(*)
+		FROM meb_log_reg mlr 
+		WHERE 1 = 1
+		$dynamicsql
+	</sql>
+</dataset>
+
+		

@@ -1,0 +1,9 @@
+<!--会员意图表-->
+<dataset>
+	<sql name="getPerIntentionInfo" memo="会员意图表记录信息">
+		SELECT want_sex,age_rang 
+		FROM meb_per_intention mpi 
+		WHERE 1 = 1 
+		AND mpi.uid = ? 
+	</sql>
+</dataset>

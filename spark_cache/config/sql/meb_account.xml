@@ -1,0 +1,17 @@
+<!--会员账号模块-->
+<dataset>
+	<sql name="isReg" memo="判断该账户是不是已经被注册">
+		SELECT count(1) AS num
+		FROM meb_account ma LEFT JOIN meb_info mi ON ma.uid = mi.uid 
+		WHERE mi.`status` &lt; 3 AND ma.`status` = 1 
+		AND ma.account = ? 
+	</sql>
+	<sql name="loginByAccount" memo="根据账号登录">
+		SELECT ma.uid
+		FROM meb_account ma
+		WHERE 1 = 1
+		AND ma.account = ?
+		AND ma.`password` = ?
+		AND ma.`status` = 1
+	</sql>
+</dataset>

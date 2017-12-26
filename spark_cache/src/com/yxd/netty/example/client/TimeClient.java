@@ -40,7 +40,8 @@ public class TimeClient {
     }
 
     public static void main(String[] args) throws Exception {
-        new TimeClient().connect(50864, "192.168.163.180");
+    	new TimeClient().connect(50864, "192.168.163.180");
+    	//new TimeClient().connect(50864, "172.16.52.128");
     }
 
 }

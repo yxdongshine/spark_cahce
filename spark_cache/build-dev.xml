@@ -1,6 +1,6 @@
 <project basedir="." default="Release">
 	<path id="classPath">
-		<fileset dir="lib">
+		<fileset dir="web/WEB-INF/lib">
 			<include name="*.jar" />
 		</fileset>
 	</path>
@@ -86,7 +86,7 @@
     <!-- 打包成jar -->       
     <target name="spark_cache" depends="spark_cache_class" description="make .jar file">   
         <jar destfile="release/spark_cache.jar" basedir="release\web\WEB-INF\classes" compress="true" >    
-        	<fileset dir="lib">
+        	<fileset dir="web/WEB-INF/lib">
 				<include name="**/*.jar" />
 			</fileset>
         </jar>  

@@ -6,7 +6,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.util.HashMap;
 
-import org.apache.flume.thrift.ThriftFlumeEvent;
+//import org.apache.flume.thrift.ThriftFlumeEvent;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

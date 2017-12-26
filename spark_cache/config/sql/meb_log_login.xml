@@ -1,0 +1,26 @@
+<!--登录日志模块-->
+<dataset>
+	
+	<sql name="getLoginLogInfo" memo="获取登录日志信息">
+		SELECT id,uid,operate_system,os_version,login_channel,channel_version,
+		phone_type,imei_code,longitude,latitude,ip,canton_code,login_time,device_name 
+		FROM meb_log_login mll
+		WHERE mll.isvalid = 1
+		$dynamicsql
+	</sql>
+	<sql name="getLoginLogList" memo="获取登录日志列表">
+		SELECT id,uid,operate_system,os_version,login_channel,channel_version,
+		phone_type,imei_code,longitude,latitude,ip,canton_code,login_time,device_name 
+		FROM meb_log_login mll
+		WHERE 1 = 1
+		$dynamicsql
+		order by login_time desc  $limit
+	</sql>
+	
+	<sql name="getLoginLogListCount" memo="获取登录日志列表_计数">
+		SELECT count(*)
+		FROM meb_log_login mll 
+		WHERE 1 = 1
+		$dynamicsql
+	</sql>
+</dataset>
