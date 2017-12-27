@@ -32,13 +32,14 @@ public class MebTest  extends TestCase{
 	 */
 	public void testRegByTel() throws Exception{
 		ParaMap inMap = new ParaMap();
-		inMap.put("account", "13628484078");
+		inMap.put("account", "11128484078");
 		inMap.put("password", "123456");
 		inMap.put("longitude", "32.95");
 		inMap.put("latitude", "112.32");
 		inMap.put("age", "10");
 		inMap.put("sex", "1");
 		inMap.put("height", "180");
+		inMap.put("email", "36564@qq.com");
 		inMap.put("want_sex", "0");
 		inMap.put("age_rang", "18-20");
 		ParaMap outMap = mebService.regMeb(inMap);

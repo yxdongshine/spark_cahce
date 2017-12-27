@@ -59,7 +59,8 @@ public class MebInternal {
 		mebData.put("age", inMap.getString("age"));
 		mebData.put("sex", inMap.getString("sex"));
 		mebData.put("height", inMap.getString("height"));
-		
+		mebData.put("email", inMap.getString("email"));
+
 		ParaMap mebResult = mebDao.addPerMeb(mebData);
 		if(!DataSetUtil.addSuccess(mebResult)){
 			throw new Exception("增加个人会员信息失败");
