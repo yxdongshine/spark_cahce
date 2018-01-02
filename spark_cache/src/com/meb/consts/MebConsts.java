@@ -229,7 +229,8 @@ public class MebConsts {
 	}
 	
 	public enum GetMebInfo{
-		ERR_UID_NULL(201201, "会员uid不能为空");
+		ERR_UID_NULL(201201, "会员uid不能为空"),
+		SUCC_GET_MEB_INFO(201100, "修改密码成功");
 		public int code;
 		public String mes;
 		GetMebInfo(int code, String mes){
@@ -416,4 +417,16 @@ public class MebConsts {
 		}
 	}
 	
+	public enum UpdateMebInfo{
+		SUCC_UPDATE_MEB_INFO(202400, "编辑信息成功"),
+		ERR_UID_NULL(202403, "UID不能为空"),
+		FAIL_UPDATE_MEB_INFO(202408, "编辑信息失败");
+		public int code;
+		public String mes;
+		UpdateMebInfo(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+
 }

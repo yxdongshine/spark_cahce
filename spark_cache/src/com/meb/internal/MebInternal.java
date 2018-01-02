@@ -11,6 +11,7 @@ import com.meb.consts.BeanInfoConsts.MebInfo_RULE;
 import com.meb.consts.BeanInfoConsts.MebInfo_TYPE;
 import com.meb.consts.MebConsts.IsRegByTel;
 import com.meb.consts.MebConsts.RegMeb;
+import com.meb.consts.MebConsts.UpdateMebInfo;
 import com.meb.dao.LoginLogDao;
 import com.meb.dao.MebDao;
 import com.meb.dao.MebPerIntentionDao;
@@ -101,5 +102,39 @@ public class MebInternal {
 		ParaMap uidData = new ParaMap();
 		uidData.put("uid", uid);
 		return RespUtils.result(RegMeb.SUCCESS.code, RegMeb.SUCCESS.mes, uidData);
+	}
+	
+	
+	/**
+	 * 修改个人会员信息
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap updateMebInfo(ParaMap inMap)throws Exception{
+		ParaMap conditions = new ParaMap();
+		conditions.put("uid", inMap.getString("uid"));
+		conditions.put("isvalid", 1);
+		ParaMap result = mebDao.updateMebInfo(inMap, conditions);
+		if(DataSetUtil.updateSuccess(result)){
+			return RespUtils.resSuccess(UpdateMebInfo.SUCC_UPDATE_MEB_INFO.code, UpdateMebInfo.SUCC_UPDATE_MEB_INFO.mes);
+		}else{
+			return RespUtils.resFail(UpdateMebInfo.FAIL_UPDATE_MEB_INFO.code, UpdateMebInfo.FAIL_UPDATE_MEB_INFO.mes);
+		}
+	}
+	
+	
+	/**
+	 * 获取个人会员信息
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap getMebInfo(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		outMap = mebDao.getMebInfo(inMap);
+		return outMap;
 	}
 }

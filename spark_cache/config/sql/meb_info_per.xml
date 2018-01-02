@@ -1,0 +1,29 @@
+<!--会员信息维护模块-->
+<dataset>
+	
+	<sql name="getLoginTypeCountByCode" memo="根据登录方式编码统计登录方式信息条数">
+		SELECT count(1) AS count_code FROM meb_login_type WHERE code = ? AND isvalid = 1
+	</sql>
+	<sql name="getMebInfo" memo="获取基本用户详细信息">
+		SELECT mi.uid,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
+		mip.photo,mi.`status`,mip.sex,mi.createtime AS reg_time,mip.height,
+		mip.body_type,mip.education,mip.drinking,mip.smoking
+		FROM meb_info mi 
+		LEFT JOIN meb_info_per mip ON mi.uid = mip.uid 
+		LEFT JOIN meb_log_reg reg ON reg.uid=mi.uid 
+		WHERE 1 = 1    
+		$dynamicsql
+	</sql>
+	<sql name="getMebList" memo="根据条件查询基本用户列表">
+		SELECT mi.uid,mip.tel,mip.nickname,mip.realname,mi.system_id,mi.`status`,sys.name as system_name, sys.code as system_code
+		FROM  meb_info mi LEFT JOIN sys_system sys on (sys.id=mi.system_id) LEFT JOIN meb_info_per mip ON mi.uid = mip.uid  LEFT JOIN meb_log_reg reg on(reg.uid=mi.uid)
+		WHERE $dynamicsql
+		order by reg.reg_time desc  $limit
+	</sql>
+	
+	<sql name="getMebListCount" memo="根据条件查询基本用户列表_计数">
+		SELECT count(*)
+		FROM meb_info mi LEFT JOIN meb_info_per mip ON mi.uid = mip.uid  LEFT JOIN meb_log_reg reg on(reg.uid=mi.uid)
+		WHERE $dynamicsql
+	</sql>
+</dataset>

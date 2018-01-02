@@ -7,9 +7,12 @@ import com.base.annotation.Version;
 import com.base.service.BaseService;
 import com.base.utils.ParaMap;
 import com.base.utils.StrUtils;
+import com.common.util.PubUtils;
 import com.common.util.RespUtils;
+import com.meb.consts.MebConsts.GetMebInfo;
 import com.meb.consts.MebConsts.LoginByAccount;
 import com.meb.consts.MebConsts.RegMeb;
+import com.meb.consts.MebConsts.UpdateMebInfo;
 import com.meb.internal.MebAccountInternal;
 import com.meb.internal.MebInternal;
 
@@ -64,7 +67,6 @@ public class MebService extends BaseService {
 			return RespUtils.resFail(LoginByAccount.ERR_PASSWORD_NULL.code, LoginByAccount.ERR_PASSWORD_NULL.mes);
 		}
 
-
 		ParaMap logResult = checkLogInfo(inMap);
 		if (logResult != null) {
 			return logResult;
@@ -101,4 +103,41 @@ public class MebService extends BaseService {
 		return null;
 	}
 
+	
+	/**
+	 * 修改个人会员信息
+	 * 
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap updateMebInfo(ParaMap inMap) throws Exception {
+		if (StrUtils.isNull(inMap.getString("uid"))) {
+			return RespUtils.resFail(UpdateMebInfo.ERR_UID_NULL.code, UpdateMebInfo.ERR_UID_NULL.mes);
+		}
+		return mebInternal.updateMebInfo(inMap);
+	}
+	
+	
+	
+	/**
+	 * 获取个人会员信息 对外开放接口
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	@SuppressWarnings("unchecked")
+	public ParaMap getMebInfo(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		//验证输入参数
+		if (StrUtils.isNull(inMap.getString("uid"))) {
+			return RespUtils.resFail(GetMebInfo.ERR_UID_NULL.code, UpdateMebInfo.ERR_UID_NULL.mes);
+		}
+		outMap = mebInternal.getMebInfo(inMap);
+		outMap.putAll(RespUtils.resSuccess(GetMebInfo.SUCC_GET_MEB_INFO.code, GetMebInfo.SUCC_GET_MEB_INFO.mes));
+		outMap = PubUtils.ConvertJsonMap(outMap);
+		return outMap;
+	}
 }

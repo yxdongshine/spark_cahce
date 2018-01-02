@@ -17,10 +17,22 @@ public class MebDao extends SimpleDataSetDao{
 	 * @param data
 	 * @return
 	 * @throws Exception
-	 * @author lgr
+	 * @author YXD
 	 */
 	public ParaMap addPerMeb(ParaMap data)throws Exception{
 		return insert(MEB_INFO_PER, data);
+	}
+	
+	/**
+	 * 更新会员信息
+	 * @param updateData
+	 * @param conditions
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap updateMebInfo(ParaMap updateData, ParaMap conditions)throws Exception{
+		return update(MEB_INFO_PER, conditions, updateData);
 	}
 	
 	/**
@@ -40,13 +52,6 @@ public class MebDao extends SimpleDataSetDao{
 			dynamicSql.append(" AND mi.uid = ? ");
 			sqlMap.addParam(uid);
 		}
-		
-		String type = inMap.getString("type");
-		if (StrUtils.isNotNull(type)) {
-			dynamicSql.append(" AND mi.type = ? ");
-			sqlMap.addParam(type);
-		}
-	
 		sqlMap.setPlaceHolder(DYNAMIC_SQL, dynamicSql.toString());
 		ParaMap outMap = query(sqlMap);
 		return outMap;
@@ -114,8 +119,4 @@ public class MebDao extends SimpleDataSetDao{
 		return attachData(sqlMap, total, MEB_INFO_PER_SQL, "getMebList", pageSize, pageIndex);
 	}
 	
-	
-	public ParaMap updateMebInfo(ParaMap updateData, ParaMap conditions)throws Exception{
-		return update(MEB_INFO_PER, conditions, updateData);
-	}
 }

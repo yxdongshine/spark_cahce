@@ -61,4 +61,26 @@ public class MebTest  extends TestCase{
 		DataSourceManager.commit();
 		System.out.println(outMap);
 	}
+	
+	public void testUpdateMebInfo() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("uid", "20171227055013435318271168050208");
+		inMap.put("height", 190);
+		inMap.put("body_type", "sb");
+		inMap.put("education", 190);
+		inMap.put("drinking", 190);
+		inMap.put("smoking", 190);
+		inMap.put("pets", 190);
+		ParaMap outMap = mebService.updateMebInfo(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
+	
+	public void testGetMebInfo() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("uid", "20171227055013435318271168050208");
+		ParaMap outMap = mebService.getMebInfo(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
 }
