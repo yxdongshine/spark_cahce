@@ -13,6 +13,7 @@ import com.meb.consts.MebConsts.GetMebInfo;
 import com.meb.consts.MebConsts.LoginByAccount;
 import com.meb.consts.MebConsts.RegMeb;
 import com.meb.consts.MebConsts.UpdateMebInfo;
+import com.meb.consts.MebConsts.UpdatePwdNoConfirm;
 import com.meb.internal.MebAccountInternal;
 import com.meb.internal.MebInternal;
 
@@ -138,6 +139,26 @@ public class MebService extends BaseService {
 		outMap = mebInternal.getMebInfo(inMap);
 		outMap.putAll(RespUtils.resSuccess(GetMebInfo.SUCC_GET_MEB_INFO.code, GetMebInfo.SUCC_GET_MEB_INFO.mes));
 		outMap = PubUtils.ConvertJsonMap(outMap);
+		return outMap;
+	}
+	
+	
+	/**
+	 * 更新密码 
+	 * 
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap updatePwdNoConfirm(ParaMap inMap) throws Exception {
+		ParaMap outMap = new ParaMap();
+		// 验证参数
+		if (StrUtils.isNull(inMap.getString("uid"))) {// 会员编号
+			return RespUtils.resFail(UpdatePwdNoConfirm.ERR_UID_NULL.code,
+					UpdatePwdNoConfirm.ERR_UID_NULL.mes);
+		}
+		outMap = maInternal.updatePwdConfirm(inMap);
 		return outMap;
 	}
 }

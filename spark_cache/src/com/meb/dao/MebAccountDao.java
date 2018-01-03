@@ -37,6 +37,19 @@ public class MebAccountDao extends SimpleDataSetDao{
 		return outMap;
 	}
 	
+	/**
+	 *修改会员账号信息
+	 * @param inMap
+	 * @param conditions
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap updateMebAccount(ParaMap inMap,ParaMap conditions) throws Exception{
+		
+		ParaMap outMap = update(TABLE_NAME, conditions, inMap);
+		return outMap;
+	}
 	
 	/**
 	 * 根据账号密码登录

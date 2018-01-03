@@ -219,6 +219,7 @@ public class MebConsts {
 		ERR_CONFIRM_PWD_NULL(201105, "确认密码不能为空"),
 		ERR_TWICE_PWD_NOT_SAME(201106, "两次修改密码不相同"),
 		ERR_OLD_PWD(201107, "原来的密码不正确"),
+		ERR_MAIL_NULL(201107, "没有找到邮箱地址"),
 		ERR_FAIL(201108, "修改密码失败");
 		public int code;
 		public String mes;
@@ -230,7 +231,7 @@ public class MebConsts {
 	
 	public enum GetMebInfo{
 		ERR_UID_NULL(201201, "会员uid不能为空"),
-		SUCC_GET_MEB_INFO(201100, "修改密码成功");
+		SUCC_GET_MEB_INFO(201100, "获取会员信息成功");
 		public int code;
 		public String mes;
 		GetMebInfo(int code, String mes){

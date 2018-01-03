@@ -6,7 +6,13 @@ import junit.framework.TestCase;
 import com.base.ds.DataSourceManager;
 import com.base.utils.ParaMap;
 import com.meb.service.MebService;
+import com.sun.mail.util.MailSSLSocketFactory;
 
+import javax.mail.*;
+import javax.mail.internet.*;
+
+import java.security.GeneralSecurityException;
+import java.util.*;
 public class MebTest  extends TestCase{
 	
 	private MebService mebService =  new MebService();
@@ -61,7 +67,12 @@ public class MebTest  extends TestCase{
 		DataSourceManager.commit();
 		System.out.println(outMap);
 	}
-	
+
+	/**
+	 * http://ec2-18-221-181-42.us-east-2.compute.amazonaws.com:8080/spark_cache/data?module=meb&service=Meb&method=updateMebInfo&uid=20171227055013435318271168050208&pets=190&height=190&body_type=sb&education=190&drinking=190&smoking=190
+	 * @throws Exception
+	 * @author YXD
+	 */
 	public void testUpdateMebInfo() throws Exception{
 		ParaMap inMap = new ParaMap();
 		inMap.put("uid", "20171227055013435318271168050208");
@@ -76,11 +87,80 @@ public class MebTest  extends TestCase{
 		System.out.println(outMap);
 	}
 	
+	/**
+	 * http://ec2-18-221-181-42.us-east-2.compute.amazonaws.com:8080/spark_cache/data?module=meb&service=Meb&method=getMebInfo&uid=20171227055013435318271168050208
+	 * @throws Exception
+	 * @author YXD
+	 */
 	public void testGetMebInfo() throws Exception{
 		ParaMap inMap = new ParaMap();
 		inMap.put("uid", "20171227055013435318271168050208");
 		ParaMap outMap = mebService.getMebInfo(inMap);
 		DataSourceManager.commit();
 		System.out.println(outMap);
+	}
+	
+	public void testUpdatePwdNoConfirm() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("uid", "20171227055013435318271168050208");
+		ParaMap outMap = mebService.updatePwdNoConfirm(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
+	
+	public static void main(String[] args) throws GeneralSecurityException {
+	
+		// 收件人电子邮箱
+	      String to = "pfjhetg@qq.com";
+	 
+	      // 发件人电子邮箱
+	      String from = "659777399@qq.com";
+	 
+	      // 指定发送邮件的主机
+	      String host = "smtp.qq.com" ; //QQ 邮件服务器";
+	 
+	      // 获取系统属性
+	      Properties properties = System.getProperties();
+	 
+	      // 设置邮件服务器
+	      properties.setProperty("mail.smtp.host", host);
+	      properties.put("mail.smtp.auth", "true");
+	      MailSSLSocketFactory sf = new MailSSLSocketFactory();
+	      sf.setTrustAllHosts(true);
+	      properties.put("mail.smtp.ssl.enable", "true");
+	      properties.put("mail.smtp.ssl.socketFactory", sf);
+	      // 获取默认session对象
+	        Session session = Session.getDefaultInstance(properties,new Authenticator(){
+	            public PasswordAuthentication getPasswordAuthentication()
+	            {
+	                return new PasswordAuthentication("659777399@qq.com", "wprchrzvusyqbbcg"); //发件人邮件用户名、密码
+	            }
+	        });
+
+	      try{
+	         // 创建默认的 MimeMessage 对象
+	         MimeMessage message = new MimeMessage(session);
+	 
+	         // Set From: 头部头字段
+	         message.setFrom(new InternetAddress(from));
+	 
+	         // Set To: 头部头字段
+	         message.addRecipient(Message.RecipientType.TO,
+	                                  new InternetAddress(to));
+	 
+	         // Set Subject: 头部头字段
+	         message.setSubject("邮件主题");
+	 
+	         // 设置消息体
+	         message.setText("你大爷 来看乌龟子！！！！！！");
+	 
+	         // 发送消息
+	         for (int i = 0; i < 10; i++) {
+		         Transport.send(message);
+			 }
+	         System.out.println("Sent message successfully....");
+	      }catch (MessagingException mex) {
+	         mex.printStackTrace();
+	      }
 	}
 }
