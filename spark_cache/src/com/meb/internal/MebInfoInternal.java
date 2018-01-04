@@ -37,4 +37,43 @@ public class MebInfoInternal {
 		}
 	}
 	
+	
+	/**
+	 * 获取会员列表根据登录日志
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap getMebListByLogin(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		outMap = mebInfoDao.getMebListByLogin(inMap);
+		return outMap;
+	}
+	
+	/**
+	 * 获取会员列表根据注册日志
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap getMebListByReg(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		outMap = mebInfoDao.getMebListByReg(inMap);
+		return outMap;
+	}
+	
+	/**
+	 * 获取会员列表根据附近
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap getMebListByNear(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		outMap = mebInfoDao.getMebListByNear(inMap);
+		return outMap;
+	}
 }

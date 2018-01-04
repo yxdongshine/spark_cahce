@@ -430,4 +430,15 @@ public class MebConsts {
 		}
 	}
 
+	public enum GetMebList{
+		ERR_LONGITUDE_NULL(202403, "经度必须输入"),
+		ERR_LATITUDE_NULL(202404, "维度必须输入"),
+		SUCC_GET_MEB_LIST(201100, "获取会员列表成功");
+		public int code;
+		public String mes;
+		GetMebList(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
 }

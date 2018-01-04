@@ -10,11 +10,13 @@ import com.base.utils.StrUtils;
 import com.common.util.PubUtils;
 import com.common.util.RespUtils;
 import com.meb.consts.MebConsts.GetMebInfo;
+import com.meb.consts.MebConsts.GetMebList;
 import com.meb.consts.MebConsts.LoginByAccount;
 import com.meb.consts.MebConsts.RegMeb;
 import com.meb.consts.MebConsts.UpdateMebInfo;
 import com.meb.consts.MebConsts.UpdatePwdNoConfirm;
 import com.meb.internal.MebAccountInternal;
+import com.meb.internal.MebInfoInternal;
 import com.meb.internal.MebInternal;
 
 @ServiceDesc("会员基本操作类")
@@ -24,6 +26,7 @@ import com.meb.internal.MebInternal;
 public class MebService extends BaseService {
 
 	private MebInternal mebInternal = new MebInternal();
+	private MebInfoInternal miInternal = new MebInfoInternal();
 	private MebAccountInternal maInternal = new MebAccountInternal();
 
 	/**
@@ -159,6 +162,64 @@ public class MebService extends BaseService {
 					UpdatePwdNoConfirm.ERR_UID_NULL.mes);
 		}
 		outMap = maInternal.updatePwdConfirm(inMap);
+		return outMap;
+	}
+	
+	
+	/**
+	 * 获取会员列表根据登录日志 对外开放接口
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	@SuppressWarnings("unchecked")
+	public ParaMap getMebListByLogin(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		outMap = miInternal.getMebListByLogin(inMap);
+		outMap.putAll(RespUtils.resSuccess(GetMebList.SUCC_GET_MEB_LIST.code, GetMebList.SUCC_GET_MEB_LIST.mes));
+		outMap = PubUtils.ConvertJsonList(outMap);
+		return outMap;
+	}
+	
+	/**
+	 * 获取会员列表根据注册日志 对外开放接口
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	@SuppressWarnings("unchecked")
+	public ParaMap getMebListByReg(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		outMap = miInternal.getMebListByReg(inMap);
+		outMap.putAll(RespUtils.resSuccess(GetMebList.SUCC_GET_MEB_LIST.code, GetMebList.SUCC_GET_MEB_LIST.mes));
+		outMap = PubUtils.ConvertJsonList(outMap);
+		return outMap;
+	}
+	
+	/**
+	 * 获取会员列表根据附近 对外开放接口
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	@SuppressWarnings("unchecked")
+	public ParaMap getMebListByNear(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		// 验证参数
+		if (StrUtils.isNull(inMap.getString("longitude"))) {
+			return RespUtils.resFail(GetMebList.ERR_LONGITUDE_NULL.code,
+					GetMebList.ERR_LONGITUDE_NULL.mes);
+		}
+		if (StrUtils.isNull(inMap.getString("latitude"))) {
+			return RespUtils.resFail(GetMebList.ERR_LATITUDE_NULL.code,
+					GetMebList.ERR_LATITUDE_NULL.mes);
+		}
+		outMap = miInternal.getMebListByNear(inMap);
+		outMap.putAll(RespUtils.resSuccess(GetMebList.SUCC_GET_MEB_LIST.code, GetMebList.SUCC_GET_MEB_LIST.mes));
+		outMap = PubUtils.ConvertJsonList(outMap);
 		return outMap;
 	}
 }

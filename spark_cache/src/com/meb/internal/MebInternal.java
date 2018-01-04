@@ -12,10 +12,8 @@ import com.meb.consts.BeanInfoConsts.MebInfo_TYPE;
 import com.meb.consts.MebConsts.IsRegByTel;
 import com.meb.consts.MebConsts.RegMeb;
 import com.meb.consts.MebConsts.UpdateMebInfo;
-import com.meb.dao.LoginLogDao;
 import com.meb.dao.MebDao;
 import com.meb.dao.MebPerIntentionDao;
-import com.meb.dao.RegLogDao;
 import com.meb.util.DataSetUtil;
 
 public class MebInternal {
@@ -23,8 +21,6 @@ public class MebInternal {
 	private MebAccountInternal maInternal = new MebAccountInternal();
 	private MebInfoInternal mebInfoInternal = new MebInfoInternal();
 	private MebDao mebDao = new MebDao();
-	private RegLogDao rlDao = new RegLogDao();
-	private LoginLogDao llDao = new LoginLogDao();
 	private MebPerIntentionDao mpiDao = new MebPerIntentionDao();
 	private LoginLogInternal loginLogInternal = new LoginLogInternal();
 	private RegLogInternal regLogInternal = new RegLogInternal();

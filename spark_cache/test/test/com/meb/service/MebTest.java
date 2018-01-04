@@ -108,6 +108,35 @@ public class MebTest  extends TestCase{
 		System.out.println(outMap);
 	}
 	
+	public void testGetMebListByLogin() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("page_size", "10");
+		inMap.put("page_index", "1");
+		ParaMap outMap = mebService.getMebListByLogin(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
+	
+	public void testGetMebListByReg() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("page_size", "10");
+		inMap.put("page_index", "1");
+		ParaMap outMap = mebService.getMebListByReg(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
+	
+	public void testGetMebListByNear() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("longitude", "10");
+		inMap.put("latitude", "1");
+		inMap.put("page_size", "10");
+		inMap.put("page_index", "1");
+		ParaMap outMap = mebService.getMebListByNear(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
+	
 	public static void main(String[] args) throws GeneralSecurityException {
 	
 		// 收件人电子邮箱
