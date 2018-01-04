@@ -130,12 +130,12 @@ public class MebTest  extends TestCase{
 	      properties.put("mail.smtp.ssl.enable", "true");
 	      properties.put("mail.smtp.ssl.socketFactory", sf);
 	      // 获取默认session对象
-	        Session session = Session.getDefaultInstance(properties,new Authenticator(){
-	            public PasswordAuthentication getPasswordAuthentication()
-	            {
-	                return new PasswordAuthentication("659777399@qq.com", "wprchrzvusyqbbcg"); //发件人邮件用户名、密码
-	            }
-	        });
+	      Session session = Session.getDefaultInstance(properties,new Authenticator(){
+            public PasswordAuthentication getPasswordAuthentication()
+            {
+                return new PasswordAuthentication("659777399@qq.com", "wprchrzvusyqbbcg"); //发件人邮件用户名、密码
+            }
+	      });
 
 	      try{
 	         // 创建默认的 MimeMessage 对象
