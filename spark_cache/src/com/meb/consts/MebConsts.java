@@ -441,4 +441,17 @@ public class MebConsts {
 			this.mes = mes;
 		}
 	}
+	
+	
+	public enum GetToken{
+		SUCC_GET_TOKEN(202400, "获取token信息成功"),
+		ERR_UID_NULL(202403, "UID不能为空"),
+		FAIL_GET_TOKEN(202408, "获取token信息失败");
+		public int code;
+		public String mes;
+		GetToken(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
 }

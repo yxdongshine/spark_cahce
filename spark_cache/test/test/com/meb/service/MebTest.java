@@ -1,16 +1,18 @@
 package test.com.meb.service;
 
 
+import io.rong.RongCloud;
+import io.rong.models.TokenResult;
 import junit.framework.TestCase;
 
 import com.base.ds.DataSourceManager;
 import com.base.utils.ParaMap;
 import com.meb.service.MebService;
-import com.sun.mail.util.MailSSLSocketFactory;
 
 import javax.mail.*;
 import javax.mail.internet.*;
 
+import java.io.Reader;
 import java.security.GeneralSecurityException;
 import java.util.*;
 public class MebTest  extends TestCase{
@@ -137,7 +139,7 @@ public class MebTest  extends TestCase{
 		System.out.println(outMap);
 	}
 	
-	public static void main(String[] args) throws GeneralSecurityException {
+	public static void main(String[] args) throws GeneralSecurityException {/*
 	
 		// 收件人电子邮箱
 	      String to = "pfjhetg@qq.com";
@@ -191,5 +193,27 @@ public class MebTest  extends TestCase{
 	      }catch (MessagingException mex) {
 	         mex.printStackTrace();
 	      }
+	*/
+		
+	
+		String appKey = "sfci50a7s4vki";//替换成您的appkey
+		String appSecret = "3IDH5NeitVblq8";//替换成匹配上面key的secret
+		
+		Reader reader = null ;
+		RongCloud rongCloud = RongCloud.getInstance(appKey, appSecret);
+				
+		
+		System.out.println("************************User********************");
+		// 获取 Token 方法 
+		TokenResult userGetTokenResult = null;
+		try {
+			userGetTokenResult = rongCloud.user.getToken("20171225183609667747673223771123", "", "");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("getToken:  " + userGetTokenResult.toString());
+		
+		
 	}
 }
