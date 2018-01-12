@@ -84,6 +84,7 @@ public class MebTest  extends TestCase{
 		inMap.put("drinking", 190);
 		inMap.put("smoking", 190);
 		inMap.put("pets", 190);
+		inMap.put("photo", "http://www.bauhfd");
 		ParaMap outMap = mebService.updateMebInfo(inMap);
 		DataSourceManager.commit();
 		System.out.println(outMap);

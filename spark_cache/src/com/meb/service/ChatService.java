@@ -9,7 +9,6 @@ import com.base.utils.ParaMap;
 import com.base.utils.StrUtils;
 import com.common.util.RespUtils;
 import com.meb.consts.MebConsts.GetToken;
-import com.meb.consts.MebConsts.UpdateMebInfo;
 import com.meb.internal.ChatInternal;
 
 @ServiceDesc("会员聊天类")
