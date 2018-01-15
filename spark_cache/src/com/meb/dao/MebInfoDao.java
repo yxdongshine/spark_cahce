@@ -57,6 +57,31 @@ public class MebInfoDao extends SimpleDataSetDao{
 		sqlMap.setSQL(SQL_URL ,"getMebListByLogin");
 		
 		StringBuilder dynamicSql = new StringBuilder();
+		String sex = inMap.getString("sex");//性别
+		if (StrUtils.isNotNull(sex)) {
+			dynamicSql.append(" AND mip.sex = ? ");
+			sqlMap.addParam(sex);
+		}
+		String minAge = inMap.getString("min_age");//最小年龄
+		if (StrUtils.isNotNull(minAge)) {
+			dynamicSql.append(" AND mip.age >= ? ");
+			sqlMap.addParam(minAge);
+		}
+		String maxAge = inMap.getString("max_age");//最大年龄
+		if (StrUtils.isNotNull(maxAge)) {
+			dynamicSql.append(" AND mip.age <= ? ");
+			sqlMap.addParam(maxAge);
+		}
+		String address = inMap.getString("address");//地址
+		if (StrUtils.isNotNull(address)) {
+			dynamicSql.append(" AND mip.address LIKE ? ");
+			sqlMap.addParam("%"+address.trim()+"%");
+		}
+		String bodyType = inMap.getString("body_type");//体型
+		if (StrUtils.isNotNull(bodyType)) {
+			dynamicSql.append(" AND mip.body_type LIKE ? ");
+			sqlMap.addParam("%"+bodyType.trim()+"%");
+		}
 		sqlMap.setPlaceHolder(DYNAMIC_SQL, dynamicSql.toString());
 		if (inMap.getInt("is_page") == MebConsts.NOT_PAGE) {
 			return query(sqlMap);
@@ -79,6 +104,31 @@ public class MebInfoDao extends SimpleDataSetDao{
 		sqlMap.setSQL(SQL_URL ,"getMebListByReg");
 		
 		StringBuilder dynamicSql = new StringBuilder();
+		String sex = inMap.getString("sex");//性别
+		if (StrUtils.isNotNull(sex)) {
+			dynamicSql.append(" AND mip.sex = ? ");
+			sqlMap.addParam(sex);
+		}
+		String minAge = inMap.getString("min_age");//最小年龄
+		if (StrUtils.isNotNull(minAge)) {
+			dynamicSql.append(" AND mip.age >= ? ");
+			sqlMap.addParam(minAge);
+		}
+		String maxAge = inMap.getString("max_age");//最大年龄
+		if (StrUtils.isNotNull(maxAge)) {
+			dynamicSql.append(" AND mip.age <= ? ");
+			sqlMap.addParam(maxAge);
+		}
+		String address = inMap.getString("address");//地址
+		if (StrUtils.isNotNull(address)) {
+			dynamicSql.append(" AND mip.address LIKE ? ");
+			sqlMap.addParam("%"+address.trim()+"%");
+		}
+		String bodyType = inMap.getString("body_type");//体型
+		if (StrUtils.isNotNull(bodyType)) {
+			dynamicSql.append(" AND mip.body_type LIKE ? ");
+			sqlMap.addParam("%"+bodyType.trim()+"%");
+		}
 		sqlMap.setPlaceHolder(DYNAMIC_SQL, dynamicSql.toString());
 		if (inMap.getInt("is_page") == MebConsts.NOT_PAGE) {
 			return query(sqlMap);
@@ -102,6 +152,31 @@ public class MebInfoDao extends SimpleDataSetDao{
 		
 		StringBuilder dynamicSql = new StringBuilder();
 		StringBuilder distancesSql = new StringBuilder();
+		String sex = inMap.getString("sex");//性别
+		if (StrUtils.isNotNull(sex)) {
+			dynamicSql.append(" AND mip.sex = ? ");
+			sqlMap.addParam(sex);
+		}
+		String minAge = inMap.getString("min_age");//最小年龄
+		if (StrUtils.isNotNull(minAge)) {
+			dynamicSql.append(" AND mip.age >= ? ");
+			sqlMap.addParam(minAge);
+		}
+		String maxAge = inMap.getString("max_age");//最大年龄
+		if (StrUtils.isNotNull(maxAge)) {
+			dynamicSql.append(" AND mip.age <= ? ");
+			sqlMap.addParam(maxAge);
+		}
+		String address = inMap.getString("address");//地址
+		if (StrUtils.isNotNull(address)) {
+			dynamicSql.append(" AND mip.address LIKE ? ");
+			sqlMap.addParam("%"+address.trim()+"%");
+		}
+		String bodyType = inMap.getString("body_type");//体型
+		if (StrUtils.isNotNull(bodyType)) {
+			dynamicSql.append(" AND mip.body_type LIKE ? ");
+			sqlMap.addParam("%"+bodyType.trim()+"%");
+		}
 		String longitude = inMap.getString("longitude");//经度
 		String latitude = inMap.getString("latitude");//维度
 		if (StrUtils.isNotNull(longitude)

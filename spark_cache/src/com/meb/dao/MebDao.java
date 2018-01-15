@@ -63,7 +63,7 @@ public class MebDao extends SimpleDataSetDao{
 	 * @param inMap
 	 * @return
 	 * @throws Exception
-	 * @author lgr
+	 * @author YXD
 	 */
 	public ParaMap getMebList(ParaMap inMap) throws Exception{
 		SQLMap sqlMap = new SQLMap();

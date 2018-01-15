@@ -38,9 +38,9 @@ public class MebTest  extends TestCase{
 	 * @throws Exception
 	 * @author YXD
 	 */
-	public void testRegByTel() throws Exception{
+	public void testRegMeb() throws Exception{
 		ParaMap inMap = new ParaMap();
-		inMap.put("account", "11128484078");
+		inMap.put("account", "19828484078");
 		inMap.put("password", "123456");
 		inMap.put("longitude", "32.95");
 		inMap.put("latitude", "112.32");
@@ -49,7 +49,9 @@ public class MebTest  extends TestCase{
 		inMap.put("height", "180");
 		inMap.put("email", "36564@qq.com");
 		inMap.put("want_sex", "0");
+		inMap.put("address", "中国重庆市江北区步行街36号");
 		inMap.put("age_rang", "18-20");
+		inMap.put("photo", "http://www.bauhfd");
 		ParaMap outMap = mebService.regMeb(inMap);
 		DataSourceManager.commit();
 		System.out.println(outMap);
@@ -113,6 +115,11 @@ public class MebTest  extends TestCase{
 	
 	public void testGetMebListByLogin() throws Exception{
 		ParaMap inMap = new ParaMap();
+		inMap.put("sex", "1");
+		inMap.put("min_age", "1");
+		inMap.put("max_age", "100");
+		inMap.put("address", "美国");
+		inMap.put("body_type", "苗条");
 		inMap.put("page_size", "10");
 		inMap.put("page_index", "1");
 		ParaMap outMap = mebService.getMebListByLogin(inMap);
@@ -122,6 +129,11 @@ public class MebTest  extends TestCase{
 	
 	public void testGetMebListByReg() throws Exception{
 		ParaMap inMap = new ParaMap();
+		inMap.put("sex", "1");
+		inMap.put("min_age", "1");
+		inMap.put("max_age", "100");
+		inMap.put("address", "美国");
+		inMap.put("body_type", "苗条");
 		inMap.put("page_size", "10");
 		inMap.put("page_index", "1");
 		ParaMap outMap = mebService.getMebListByReg(inMap);
@@ -131,6 +143,11 @@ public class MebTest  extends TestCase{
 	
 	public void testGetMebListByNear() throws Exception{
 		ParaMap inMap = new ParaMap();
+		inMap.put("sex", "1");
+		inMap.put("min_age", "1");
+		inMap.put("max_age", "100");
+		inMap.put("address", "美国");
+		inMap.put("body_type", "苗条");
 		inMap.put("longitude", "10");
 		inMap.put("latitude", "1");
 		inMap.put("page_size", "10");
