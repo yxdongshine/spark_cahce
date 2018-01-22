@@ -1,0 +1,20 @@
+<!--会员信息维护模块-->
+<dataset>
+	<sql name="getMebHeadInfo" memo="获取会员头像信息">
+		SELECT mhi.url
+		FROM meb_head_info mhi 
+		WHERE 1 = 1
+		AND mhi.isvalid = 1
+		$dynamicsql
+	</sql>
+
+	<sql name="getMebFriendsCircleList" memo="获取会员朋友圈列表">
+		SELECT mfci.id,mfci.uid,ma.account,mfci.words,mfci.urls
+		FROM meb_friends_circle_info mfci 
+		LEFT JOIN meb_account ma ON mfci.uid = ma.uid
+		WHERE 1 = 1
+		AND mfci.isvalid = 1
+		$dynamicsql
+		ORDER BY mfci.createtime DESC
+	</sql>
+</dataset>

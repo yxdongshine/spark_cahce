@@ -1,0 +1,21 @@
+<!--会员信息维护模块-->
+<dataset>
+	<sql name="getMebHeadInfo" memo="获取会员头像信息">
+		SELECT mhi.url
+		FROM meb_head_info mhi 
+		WHERE 1 = 1
+		AND mhi.isvalid = 1
+		$dynamicsql
+	</sql>
+
+	<sql name="getMebCommentList" memo="获取会员评论列表">
+		SELECT mc.id,mc.friends_circle_id,mc.to_uid,ma.account AS to_account,
+		ma1.account AS from_account,mc.from_uid,mc.content,mc.type,mc.createtime
+		FROM meb_comment mc
+		LEFT JOIN meb_account ma ON mc.to_uid = ma.uid
+		LEFT JOIN meb_account ma1 ON mc.from_uid = ma1.uid
+		WHERE 1 = 1
+		AND mc.isvalid = 1
+		$dynamicsql
+	</sql>
+</dataset>

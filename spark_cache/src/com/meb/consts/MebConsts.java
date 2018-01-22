@@ -454,4 +454,43 @@ public class MebConsts {
 			this.mes = mes;
 		}
 	}
+	
+	
+	public enum MebPublishFriendsCircle{
+		ERR_UID_NULL(201201, "会员uid不能为空"),
+		ERR_WORDS_NULL(201202, "文字内容不能为空"),
+		SUCC_MEB_PUBLISH_FRIENDS_CIRCLE(201100, "会员发布朋友圈信息成功");
+		public int code;
+		public String mes;
+		MebPublishFriendsCircle(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+	
+	public enum AddMebCommentInfo{
+		ERR_FRIENDS_CIRCLE_ID_NULL(201201, "朋友圈说说主键不能为空"),
+		ERR_TO_UID_NULL(201202, "评论谁的uid不能为空"),
+		ERR_FROM_UID_NULL(201203, "谁评论的uid不能为空"),
+		ERR_CONTENT_NULL(201204, "评论内容不能为空"),
+		ERR_PARENT_ID_NULL(201205, "上一级id不能为空"),
+		SUCC_ADD_MEB_COMMENT_INFO(201100, "会员添加评论信息成功");
+		public int code;
+		public String mes;
+		AddMebCommentInfo(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+	
+	
+	public enum GetMebFriendsCircleList{
+		SUCC_GET_MEB_FRIENDS_CIRCLE_LIST(201900, "获取朋友圈列表成功");
+		public int code;
+		public String mes;
+		GetMebFriendsCircleList(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
 }

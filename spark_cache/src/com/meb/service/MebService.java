@@ -147,6 +147,26 @@ public class MebService extends BaseService {
 	
 	
 	/**
+	 * 获取个人会员头像信息 对外开放接口
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	@SuppressWarnings("unchecked")
+	public ParaMap getMebHeadInfo(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		//验证输入参数
+		if (StrUtils.isNull(inMap.getString("uid"))) {
+			return RespUtils.resFail(GetMebInfo.ERR_UID_NULL.code, UpdateMebInfo.ERR_UID_NULL.mes);
+		}
+		outMap = mebInternal.getMebHeadInfo(inMap);
+		outMap.putAll(RespUtils.resSuccess(GetMebInfo.SUCC_GET_MEB_INFO.code, GetMebInfo.SUCC_GET_MEB_INFO.mes));
+		outMap = PubUtils.ConvertJsonList(outMap);
+		return outMap;
+	}
+	
+	/**
 	 * 更新密码 
 	 * 
 	 * @param inMap

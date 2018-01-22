@@ -1,20 +1,27 @@
 <!--会员信息维护模块-->
 <dataset>
-	
-	<sql name="getLoginTypeCountByCode" memo="根据登录方式编码统计登录方式信息条数">
-		SELECT count(1) AS count_code FROM meb_login_type WHERE code = ? AND isvalid = 1
+	<sql name="getMebHeadInfo" memo="获取会员头像信息">
+		SELECT mhi.url
+		FROM meb_head_info mhi 
+		WHERE 1 = 1
+		AND mhi.isvalid = 1
+		$dynamicsql
 	</sql>
-	<sql name="getMebInfo" memo="获取基本用户详细信息">
+
+	<sql name="getMebListByReg" memo="获取会员列表根据注册日志">
 		SELECT mi.uid,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
-		mip.photo,mi.`status`,mip.sex,mi.createtime AS reg_time,mip.height,mip.age,
+		mip.photo,mi.`status`,mip.sex,mi.createtime AS reg_time,mip.height,
 		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email
 		FROM meb_info mi 
 		LEFT JOIN meb_info_per mip ON mi.uid = mip.uid 
-		LEFT JOIN meb_log_reg reg ON reg.uid=mi.uid 
-		WHERE 1 = 1    
+		LEFT JOIN meb_log_reg mlr ON mlr.uid = mi.uid 
+		WHERE 1 = 1
+		AND mi.`status` = 1
 		$dynamicsql
+		ORDER BY mlr.createtime DESC
 	</sql>
-	<sql name="getMebListByLogin" memo="获取会员列表根据登录日志">
+	
+	<sql name="getMebListByNear" memo="获取会员列表根据附近">
 		SELECT mi.uid,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
 		mip.photo,mi.`status`,mip.sex,mi.createtime AS reg_time,mip.height,
 		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email
@@ -24,7 +31,6 @@
 		WHERE 1 = 1
 		AND mi.`status` = 1
 		$dynamicsql
-		ORDER BY mll.createtime DESC
+		ORDER BY $distancesql
 	</sql>
-
 </dataset>

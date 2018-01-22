@@ -13,6 +13,7 @@ import com.meb.consts.MebConsts.IsRegByTel;
 import com.meb.consts.MebConsts.RegMeb;
 import com.meb.consts.MebConsts.UpdateMebInfo;
 import com.meb.dao.MebDao;
+import com.meb.dao.MebHeadDao;
 import com.meb.dao.MebPerIntentionDao;
 import com.meb.util.DataSetUtil;
 
@@ -24,7 +25,8 @@ public class MebInternal {
 	private MebPerIntentionDao mpiDao = new MebPerIntentionDao();
 	private LoginLogInternal loginLogInternal = new LoginLogInternal();
 	private RegLogInternal regLogInternal = new RegLogInternal();
-
+	private MebHeadDao mhDao = new MebHeadDao();
+	
 	/**
 	 * 注册会员
 	 * @param inMap
@@ -132,6 +134,20 @@ public class MebInternal {
 	public ParaMap getMebInfo(ParaMap inMap) throws Exception{
 		ParaMap outMap = new ParaMap();
 		outMap = mebDao.getMebInfo(inMap);
+		return outMap;
+	}
+	
+	
+	/**
+	 * 获取个人会员头像信息
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap getMebHeadInfo(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		outMap = mhDao.getMebHeadInfo(inMap);
 		return outMap;
 	}
 }

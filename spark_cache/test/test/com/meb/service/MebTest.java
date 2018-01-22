@@ -99,7 +99,7 @@ public class MebTest  extends TestCase{
 	 */
 	public void testGetMebInfo() throws Exception{
 		ParaMap inMap = new ParaMap();
-		inMap.put("uid", "20171227055013435318271168050208");
+		inMap.put("uid", "20180118030100758617675254764375");
 		ParaMap outMap = mebService.getMebInfo(inMap);
 		DataSourceManager.commit();
 		System.out.println(outMap);
@@ -156,6 +156,16 @@ public class MebTest  extends TestCase{
 		DataSourceManager.commit();
 		System.out.println(outMap);
 	}
+	
+	
+	public void testGetMebHeadInfo() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("uid", "20180118030100758617675254764375");
+		ParaMap outMap = mebService.getMebHeadInfo(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
+	
 	
 	public static void main(String[] args) throws GeneralSecurityException {/*
 	
