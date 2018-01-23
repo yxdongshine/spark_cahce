@@ -53,4 +53,17 @@ public class BeanInfoConsts {
 			this.desc = desc;
 		}
 	}
+	
+	
+	public enum MebFollowSTATUS{
+		STATUS_YES(1,"已关注"),
+		STATUS_NO(0,"已取消关注");
+		
+		public int value;
+		public String desc;
+		MebFollowSTATUS(int value, String desc){
+			this.value = value;
+			this.desc = desc;
+		}
+	}
 }

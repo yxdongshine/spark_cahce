@@ -1,0 +1,17 @@
+<!--会员信息维护模块-->
+<dataset>
+	<sql name="getMebHeadInfo" memo="获取会员头像信息">
+		SELECT mhi.url
+		FROM meb_head_info mhi 
+		WHERE 1 = 1
+		AND mhi.isvalid = 1
+		$dynamicsql
+	</sql>
+
+	<sql name="getMebFollowList" memo="获取会员评论列表">
+		SELECT mfi.id,mfi.f_uid,mfi.cover_uid,mfi.status,mfi.createtime
+		FROM meb_follow_info mfi
+		WHERE 1 = 1
+		$dynamicsql
+	</sql>
+</dataset>

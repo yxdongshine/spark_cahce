@@ -483,12 +483,47 @@ public class MebConsts {
 		}
 	}
 	
-	
 	public enum GetMebFriendsCircleList{
 		SUCC_GET_MEB_FRIENDS_CIRCLE_LIST(201900, "获取朋友圈列表成功");
 		public int code;
 		public String mes;
 		GetMebFriendsCircleList(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+	
+	public enum AddMebFollowInfo{
+		ERR_F_UID_NULL(201501, "主动关注会员uid不能为空"),
+		ERR_COVER_UID_NULL(201202, "被动关注会员uid不能为空"),
+		SUCC_ADD_MEB_FOLLOW_INFO(201500, "关注会员成功");
+		public int code;
+		public String mes;
+		AddMebFollowInfo(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+	
+	
+	public enum UpdateMebFollowInfo{
+		ERR_F_UID_NULL(201501, "主动关注会员uid不能为空"),
+		ERR_COVER_UID_NULL(201202, "被动关注会员uid不能为空"),
+		ERR_UPDATE_MEB_FOLLOW_INFO(201203, "取消关注会员失败"),
+		SUCC_UPDATE_MEB_FOLLOW_INFO(201500, "取消关注会员成功");
+		public int code;
+		public String mes;
+		UpdateMebFollowInfo(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+	
+	public enum GetMebFollowList{
+		SUCC_GET_MEB_FOLLOW_LIST(201600, "获取会员关注列表成功");
+		public int code;
+		public String mes;
+		GetMebFollowList(int code, String mes){
 			this.code = code;
 			this.mes = mes;
 		}
