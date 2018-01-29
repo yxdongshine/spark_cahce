@@ -5,8 +5,6 @@ import junit.framework.TestCase;
 import com.base.ds.DataSourceManager;
 import com.base.utils.ParaMap;
 import com.meb.service.MebFollowService;
-import com.meb.service.MebFriendsCircleService;
-import com.meb.service.MebService;
 
 public class MebFollowTest extends TestCase{
 	

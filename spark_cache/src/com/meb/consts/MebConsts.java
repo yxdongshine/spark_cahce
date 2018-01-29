@@ -528,4 +528,16 @@ public class MebConsts {
 			this.mes = mes;
 		}
 	}
+	
+	public enum UpdateMebHeadInfo{
+		ERR_UID_NULL(201201, "会员uid不能为空"),
+		ERR_URL_NULL(201202, "会员头像路径不能为空"),
+		SUCC_UPDATE_MEB_HAED_INFO(201100, "上传会员头像信息成功");
+		public int code;
+		public String mes;
+		UpdateMebHeadInfo(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
 }

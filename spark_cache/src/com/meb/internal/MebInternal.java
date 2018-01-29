@@ -2,6 +2,7 @@ package com.meb.internal;
 
 import com.base.utils.IDGenerator;
 import com.base.utils.ParaMap;
+import com.base.utils.StrUtils;
 import com.common.consts.GlobalConsts.RespKey;
 import com.common.consts.GlobalConsts.RespState;
 import com.common.util.RespUtils;
@@ -148,6 +149,30 @@ public class MebInternal {
 	public ParaMap getMebHeadInfo(ParaMap inMap) throws Exception{
 		ParaMap outMap = new ParaMap();
 		outMap = mhDao.getMebHeadInfo(inMap);
+		return outMap;
+	}
+	
+	/**
+	 * 上传会员头像列表
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap uploadMebHeadInfo(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		ParaMap mebHeadInfoOutMap = mhDao.getMebHeadInfo(inMap);
+		int count = mebHeadInfoOutMap.getRecordCount();
+		if(count == 1){//存在情况下更新
+			ParaMap conditions = new ParaMap();
+			conditions.put("uid", inMap.getString("uid"));
+			outMap = mhDao.updateMebHeadInfo(inMap, conditions);
+		}else if(count == 0){//新增
+			//添加主键
+			inMap.put("id", IDGenerator.newGUID());
+			//插入数据库
+			outMap = mhDao.addMebHeadInfo(inMap);
+		}
 		return outMap;
 	}
 }

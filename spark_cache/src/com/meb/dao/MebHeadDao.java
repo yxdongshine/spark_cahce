@@ -4,8 +4,6 @@ import com.base.dao.SQLMap;
 import com.base.utils.ParaMap;
 import com.base.utils.StrUtils;
 import com.common.dao.SimpleDataSetDao;
-import com.meb.consts.BeanInfoConsts.MebInfo_TYPE;
-import com.meb.consts.MebConsts;
 
 public class MebHeadDao extends SimpleDataSetDao{
 	

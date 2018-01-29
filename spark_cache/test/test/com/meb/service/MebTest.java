@@ -166,6 +166,15 @@ public class MebTest  extends TestCase{
 		System.out.println(outMap);
 	}
 	
+	public void testUploadMebHeadInfo() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("uid", "20180118030100758617675254764375");
+		inMap.put("url", "http:baidi.com&fdjf.cun");
+		ParaMap outMap = mebService.uploadMebHeadInfo(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
+	
 	
 	public static void main(String[] args) throws GeneralSecurityException {/*
 	

@@ -13,6 +13,7 @@ import com.meb.consts.MebConsts.GetMebInfo;
 import com.meb.consts.MebConsts.GetMebList;
 import com.meb.consts.MebConsts.LoginByAccount;
 import com.meb.consts.MebConsts.RegMeb;
+import com.meb.consts.MebConsts.UpdateMebHeadInfo;
 import com.meb.consts.MebConsts.UpdateMebInfo;
 import com.meb.consts.MebConsts.UpdatePwdNoConfirm;
 import com.meb.internal.MebAccountInternal;
@@ -162,6 +163,29 @@ public class MebService extends BaseService {
 		}
 		outMap = mebInternal.getMebHeadInfo(inMap);
 		outMap.putAll(RespUtils.resSuccess(GetMebInfo.SUCC_GET_MEB_INFO.code, GetMebInfo.SUCC_GET_MEB_INFO.mes));
+		outMap = PubUtils.ConvertJsonList(outMap);
+		return outMap;
+	}
+	
+	/**
+	 * 获取个人会员头像信息 对外开放接口
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	@SuppressWarnings("unchecked")
+	public ParaMap uploadMebHeadInfo(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		//验证输入参数
+		if (StrUtils.isNull(inMap.getString("uid"))) {
+			return RespUtils.resFail(UpdateMebHeadInfo.ERR_UID_NULL.code, UpdateMebHeadInfo.ERR_UID_NULL.mes);
+		}
+		if (StrUtils.isNull(inMap.getString("url"))) {
+			return RespUtils.resFail(UpdateMebHeadInfo.ERR_URL_NULL.code, UpdateMebHeadInfo.ERR_URL_NULL.mes);
+		}
+		outMap = mebInternal.uploadMebHeadInfo(inMap);
+		outMap.putAll(RespUtils.resSuccess(UpdateMebHeadInfo.SUCC_UPDATE_MEB_HAED_INFO.code, UpdateMebHeadInfo.SUCC_UPDATE_MEB_HAED_INFO.mes));
 		outMap = PubUtils.ConvertJsonList(outMap);
 		return outMap;
 	}
