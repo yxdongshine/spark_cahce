@@ -103,5 +103,22 @@ public class MebFriendsCircleTest extends TestCase{
 		System.out.println(outMap);
 	}
 	
+	public void testAddMebLikesInfo() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("friends_circle_id", "20180122143235607553127485952420");
+		inMap.put("from_uid", "20180118032653666459603142393977");
+		inMap.put("status", "1");
+		ParaMap outMap = mfcService.addMebLikesInfo(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
 	
+	public void testUpdateMebLikesInfo() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("id", "20180131104115938537117738793612");
+		inMap.put("status", "0");
+		ParaMap outMap = mfcService.updateMebLikesInfo(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
 }

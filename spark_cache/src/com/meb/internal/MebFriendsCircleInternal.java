@@ -9,13 +9,17 @@ import com.base.utils.ParaMap;
 import com.common.util.PubUtils;
 import com.meb.dao.MebCommentDao;
 import com.meb.dao.MebFriendsCircleDao;
+import com.meb.dao.MebLikesDao;
 
 public class MebFriendsCircleInternal {
 
 	public static final String COMMENT_DATA_DES = "comment_data";
-	public static final int COMMENT_DATA_SIZE = 50000;
+	public static final int COMMENT_DATA_SIZE = 5000;
+	public static final String LIKES_DATA_DES = "likes_data";
+	public static final int LIKES_DATA_SIZE = 5000;
 	private MebFriendsCircleDao mfcDao =  new MebFriendsCircleDao();
-	private MebCommentDao mcDao =  new MebCommentDao();
+	private MebCommentDao mcDao = new MebCommentDao();
+	private MebLikesDao mlDao = new MebLikesDao();
 
 	/**
 	 * 会员发布朋友圈信息
@@ -45,15 +49,21 @@ public class MebFriendsCircleInternal {
 		ParaMap outMap = new ParaMap();
 		outMap = mfcDao.getMebFriendsCircleList(inMap);
 		outMap = addFiledMap(COMMENT_DATA_DES,COMMENT_DATA_SIZE,outMap);
-		ParaMap commentInMap = new ParaMap();
-		//每条朋友圈获取评论
+		outMap = addFiledMap(LIKES_DATA_DES,LIKES_DATA_SIZE,outMap);
+		ParaMap parasInMap = new ParaMap();
 		for (int i = 0; i < outMap.getRecordCount(); i++) {
 			String friendsCircleId = outMap.getRecordString(i, "id");
-			commentInMap.put("friends_circle_id", friendsCircleId);
-			ParaMap commentOutMap = mcDao.getMebCommentList(commentInMap);
+			parasInMap.put("friends_circle_id", friendsCircleId);
+			//每条朋友圈获取评论
+			ParaMap commentOutMap = mcDao.getMebCommentList(parasInMap);
 			ParaMap commentParaMap = PubUtils.ConvertJsonList(commentOutMap);
 			outMap.setRecordValue(i, COMMENT_DATA_DES, commentParaMap.get("data"));
+			//每条朋友圈获取点赞
+			ParaMap likesOutMap = mlDao.getMebLikesList(parasInMap);
+			ParaMap likesParaMap = PubUtils.ConvertJsonList(likesOutMap);
+			outMap.setRecordValue(i, LIKES_DATA_DES, likesParaMap.get("data"));
 		}
+		
 		return outMap;
 	}
 	

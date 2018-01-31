@@ -65,8 +65,8 @@ public class MebTest  extends TestCase{
 	 */
 	public void testLoginByAccount() throws Exception{
 		ParaMap inMap = new ParaMap();
-		inMap.put("account", "13628484078");
-		inMap.put("password", "123456");
+		inMap.put("account", "1");
+		inMap.put("password", "1");
 		ParaMap outMap = mebService.loginByAccount(inMap);
 		DataSourceManager.commit();
 		System.out.println(outMap);

@@ -483,6 +483,33 @@ public class MebConsts {
 		}
 	}
 	
+	public enum AddMebLikesInfo{
+		ERR_FRIENDS_CIRCLE_ID_NULL(201201, "朋友圈说说主键不能为空"),
+		ERR_FROM_UID_NULL(201203, "谁点赞的uid不能为空"),
+		ERR_STATUS_NULL(201204, "状态值不能为空"),
+		ERR_HAD_LIKES_NULL(201205, "已点赞"),
+		SUCC_ADD_MEB_LIKES_INFO(201100, "会员点赞信息成功");
+		public int code;
+		public String mes;
+		AddMebLikesInfo(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+	
+	public enum UpdateMebLikesInfo{
+		ERR_ID_NULL(201203, "id不能为空"),
+		ERR_NO_LIKES(201205, "没有点赞"),
+		ERR_STATUS_NULL(201204, "状态值不能为空"),
+		SUCC_UPDATE_MEB_LIKES_INFO(201100, "会员取消点赞信息成功");
+		public int code;
+		public String mes;
+		UpdateMebLikesInfo(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+	
 	public enum GetMebFriendsCircleList{
 		SUCC_GET_MEB_FRIENDS_CIRCLE_LIST(201900, "获取朋友圈列表成功");
 		public int code;

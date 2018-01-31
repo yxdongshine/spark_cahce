@@ -1,0 +1,11 @@
+<!--会员点赞维护模块-->
+<dataset>
+	<sql name="getMebLikesList" memo="获取会员关注列表">
+		SELECT mli.id,mli.friends_circle_id,mli.from_uid,
+		mli.status,mli.createtime,mip.photo 
+		FROM meb_likes_info mli
+		LEFT JOIN meb_info_per mip ON mli.from_uid = mip.uid
+		WHERE 1 = 1
+		$dynamicsql
+	</sql>
+</dataset>

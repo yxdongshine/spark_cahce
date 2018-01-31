@@ -10,10 +10,13 @@
 
 	<sql name="getMebCommentList" memo="获取会员评论列表">
 		SELECT mc.id,mc.friends_circle_id,mc.to_uid,ma.account AS to_account,
-		ma1.account AS from_account,mc.from_uid,mc.content,mc.type,mc.createtime
+		ma1.account AS from_account,mc.from_uid,mc.content,mc.type,mc.createtime,
+		mip.photo AS from_photo,mip1.photo AS to_photo
 		FROM meb_comment mc
 		LEFT JOIN meb_account ma ON mc.to_uid = ma.uid
 		LEFT JOIN meb_account ma1 ON mc.from_uid = ma1.uid
+		LEFT JOIN meb_info_per mip ON mc.to_uid = mip.uid
+		LEFT JOIN meb_info_per mip1 ON mc.from_uid = mip1.uid
 		WHERE 1 = 1
 		AND mc.isvalid = 1
 		$dynamicsql

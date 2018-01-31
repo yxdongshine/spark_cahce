@@ -66,4 +66,28 @@ public class BeanInfoConsts {
 			this.desc = desc;
 		}
 	}
+	
+	public enum MebLikesSTATUS{
+		STATUS_YES(1,"已点赞"),
+		STATUS_NO(0,"已取消点赞");
+		
+		public int value;
+		public String desc;
+		MebLikesSTATUS(int value, String desc){
+			this.value = value;
+			this.desc = desc;
+		}
+	}
+	
+	public enum ALLSTATUS{
+		STATUS_YES(1,"有效数据"),
+		STATUS_NO(0,"无效数据");
+		
+		public int value;
+		public String desc;
+		ALLSTATUS(int value, String desc){
+			this.value = value;
+			this.desc = desc;
+		}
+	}
 }

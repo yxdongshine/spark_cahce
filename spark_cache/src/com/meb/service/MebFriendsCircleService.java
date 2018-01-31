@@ -9,10 +9,12 @@ import com.base.utils.ParaMap;
 import com.base.utils.StrUtils;
 import com.common.util.PubUtils;
 import com.common.util.RespUtils;
+import com.meb.consts.BeanInfoConsts.MebLikesSTATUS;
 import com.meb.consts.MebConsts.AddMebCommentInfo;
+import com.meb.consts.MebConsts.AddMebLikesInfo;
 import com.meb.consts.MebConsts.GetMebFriendsCircleList;
-import com.meb.consts.MebConsts.GetMebList;
 import com.meb.consts.MebConsts.MebPublishFriendsCircle;
+import com.meb.consts.MebConsts.UpdateMebLikesInfo;
 import com.meb.internal.MebCommentInternal;
 import com.meb.internal.MebFriendsCircleInternal;
 
@@ -44,6 +46,67 @@ public class MebFriendsCircleService extends BaseService {
 		}
 		outMap = mfcInternal.mebPublishFriendsCircle(inMap);
 		outMap.putAll(RespUtils.resSuccess(MebPublishFriendsCircle.SUCC_MEB_PUBLISH_FRIENDS_CIRCLE.code, MebPublishFriendsCircle.SUCC_MEB_PUBLISH_FRIENDS_CIRCLE.mes));
+		outMap = PubUtils.ConvertJsonMap(outMap);
+		return outMap;
+	}
+	
+	/**
+	 * 会员点赞信息
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author yxd
+	 */
+	@SuppressWarnings("unchecked")
+	public ParaMap addMebLikesInfo(ParaMap inMap) throws Exception {ParaMap outMap = new ParaMap();
+		//验证输入参数
+		if (StrUtils.isNull(inMap.getString("friends_circle_id"))) {
+			return RespUtils.resFail(AddMebLikesInfo.ERR_FRIENDS_CIRCLE_ID_NULL.code, AddMebLikesInfo.ERR_FRIENDS_CIRCLE_ID_NULL.mes);
+		}
+		if (StrUtils.isNull(inMap.getString("from_uid"))) {
+			return RespUtils.resFail(AddMebLikesInfo.ERR_FROM_UID_NULL.code, AddMebLikesInfo.ERR_FROM_UID_NULL.mes);
+		}
+		if (StrUtils.isNull(inMap.getString("status"))) {
+			return RespUtils.resFail(AddMebLikesInfo.ERR_STATUS_NULL.code, AddMebLikesInfo.ERR_STATUS_NULL.mes);
+		}
+		//验证是否已经点赞
+		if(mcInternal.hadMebLikesInfo(inMap)){
+			return RespUtils.resFail(AddMebLikesInfo.ERR_HAD_LIKES_NULL.code, AddMebLikesInfo.ERR_HAD_LIKES_NULL.mes);
+		}
+		outMap = mcInternal.addMebLikesInfo(inMap);
+		outMap.putAll(RespUtils.resSuccess(AddMebLikesInfo.SUCC_ADD_MEB_LIKES_INFO.code, AddMebLikesInfo.SUCC_ADD_MEB_LIKES_INFO.mes));
+		outMap = PubUtils.ConvertJsonMap(outMap);
+		return outMap;
+	}
+	
+	/**
+	 * 会员取消点赞信息
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author yxd
+	 */
+	@SuppressWarnings("unchecked")
+	public ParaMap updateMebLikesInfo(ParaMap inMap) throws Exception {ParaMap outMap = new ParaMap();
+		//验证输入参数
+		String id = inMap.getString("id");
+		if (StrUtils.isNull(id)) {
+			return RespUtils.resFail(UpdateMebLikesInfo.ERR_ID_NULL.code, UpdateMebLikesInfo.ERR_ID_NULL.mes);
+		}
+		if (StrUtils.isNull(inMap.getString("status"))) {
+			return RespUtils.resFail(UpdateMebLikesInfo.ERR_STATUS_NULL.code, UpdateMebLikesInfo.ERR_STATUS_NULL.mes);
+		}
+		//验证是否已经点赞
+		if(!mcInternal.hadMebLikesInfo(inMap)){
+			return RespUtils.resFail(UpdateMebLikesInfo.ERR_NO_LIKES.code, UpdateMebLikesInfo.ERR_NO_LIKES.mes);
+		}
+		
+		ParaMap conditions = new ParaMap();
+		conditions.put("id", id);
+		ParaMap updateMap = new ParaMap();
+		updateMap.put("status", MebLikesSTATUS.STATUS_NO.value);
+		outMap = mcInternal.updateMebFollowInfo(updateMap, conditions);
+		outMap.putAll(RespUtils.resSuccess(UpdateMebLikesInfo.SUCC_UPDATE_MEB_LIKES_INFO.code, UpdateMebLikesInfo.SUCC_UPDATE_MEB_LIKES_INFO.mes));
 		outMap = PubUtils.ConvertJsonMap(outMap);
 		return outMap;
 	}

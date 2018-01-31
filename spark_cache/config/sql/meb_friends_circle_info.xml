@@ -9,9 +9,10 @@
 	</sql>
 
 	<sql name="getMebFriendsCircleList" memo="获取会员朋友圈列表">
-		SELECT mfci.id,mfci.uid,ma.account,mfci.words,mfci.urls
+		SELECT mfci.id,mfci.uid,ma.account,mfci.words,mfci.urls,mip.photo
 		FROM meb_friends_circle_info mfci 
 		LEFT JOIN meb_account ma ON mfci.uid = ma.uid
+		LEFT JOIN meb_info_per mip ON mfci.uid = mip.uid
 		WHERE 1 = 1
 		AND mfci.isvalid = 1
 		$dynamicsql
