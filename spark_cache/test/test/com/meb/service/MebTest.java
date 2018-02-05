@@ -113,6 +113,15 @@ public class MebTest  extends TestCase{
 		System.out.println(outMap);
 	}
 	
+	public void testUpdateAccount() throws Exception{
+		ParaMap inMap = new ParaMap();
+		inMap.put("uid", "20180201084856016530536358302004");
+		inMap.put("account", "SIJIANJIAN");
+		ParaMap outMap = mebService.updateAccount(inMap);
+		DataSourceManager.commit();
+		System.out.println(outMap);
+	}
+	
 	public void testGetMebListByLogin() throws Exception{
 		ParaMap inMap = new ParaMap();
 		inMap.put("sex", "1");

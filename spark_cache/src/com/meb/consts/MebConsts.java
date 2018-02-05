@@ -229,6 +229,20 @@ public class MebConsts {
 		}
 	}
 	
+	
+	public enum UpdateAccount{
+		SUCC_UPDATE_ACCOUNT(201100, "修改账户成功"),
+		ERR_UID_NULL(201102, "会员编号不能为空"),
+		ERR_ACCOUNT_NULL(201102, "会员账户不能为空"),
+		FAIL_UPDATE_ACCOUNT(201108, "修改账户失败");
+		public int code;
+		public String mes;
+		UpdateAccount(int code, String mes){
+			this.code = code;
+			this.mes = mes;
+		}
+	}
+	
 	public enum GetMebInfo{
 		ERR_UID_NULL(201201, "会员uid不能为空"),
 		SUCC_GET_MEB_INFO(201100, "获取会员信息成功");
@@ -473,7 +487,7 @@ public class MebConsts {
 		ERR_TO_UID_NULL(201202, "评论谁的uid不能为空"),
 		ERR_FROM_UID_NULL(201203, "谁评论的uid不能为空"),
 		ERR_CONTENT_NULL(201204, "评论内容不能为空"),
-		ERR_PARENT_ID_NULL(201205, "上一级id不能为空"),
+		ERR_TYPE_NULL(201205, "类型不能为空"),
 		SUCC_ADD_MEB_COMMENT_INFO(201100, "会员添加评论信息成功");
 		public int code;
 		public String mes;

@@ -9,8 +9,13 @@
 	</sql>
 
 	<sql name="getMebFollowList" memo="获取会员评论列表">
-		SELECT mfi.id,mfi.f_uid,mfi.cover_uid,mfi.status,mfi.createtime
+		SELECT mfi.id,mfi.f_uid,mip.photo AS f_photo,mfi.cover_uid,mip1.photo AS cover_photo,
+		ma.account AS f_account,ma1.account AS cover_account,mfi.status,mfi.createtime
 		FROM meb_follow_info mfi
+		LEFT JOIN meb_info_per mip ON mfi.f_uid = mip.uid
+		LEFT JOIN meb_info_per mip1 ON mfi.cover_uid = mip1.uid 
+		LEFT JOIN meb_account ma ON mfi.f_uid = ma.uid
+		LEFT JOIN meb_account ma1 ON mfi.cover_uid = ma1.uid
 		WHERE 1 = 1
 		$dynamicsql
 	</sql>

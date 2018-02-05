@@ -13,6 +13,7 @@ import com.meb.consts.MebConsts.GetMebInfo;
 import com.meb.consts.MebConsts.GetMebList;
 import com.meb.consts.MebConsts.LoginByAccount;
 import com.meb.consts.MebConsts.RegMeb;
+import com.meb.consts.MebConsts.UpdateAccount;
 import com.meb.consts.MebConsts.UpdateMebHeadInfo;
 import com.meb.consts.MebConsts.UpdateMebInfo;
 import com.meb.consts.MebConsts.UpdatePwdNoConfirm;
@@ -209,6 +210,26 @@ public class MebService extends BaseService {
 		return outMap;
 	}
 	
+	/**
+	 * 更新密码 
+	 * 
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap updateAccount(ParaMap inMap) throws Exception {
+		ParaMap outMap = new ParaMap();
+		// 验证参数
+		if (StrUtils.isNull(inMap.getString("uid"))) {// 会员编号
+			return RespUtils.resFail(UpdateAccount.ERR_UID_NULL.code,UpdateAccount.ERR_UID_NULL.mes);
+		}
+		if (StrUtils.isNull(inMap.getString("account"))) {// 会员账号
+			return RespUtils.resFail(UpdateAccount.ERR_ACCOUNT_NULL.code,UpdateAccount.ERR_ACCOUNT_NULL.mes);
+		}
+		outMap = maInternal.updateAccount(inMap);
+		return outMap;
+	}
 	
 	/**
 	 * 获取会员列表根据登录日志 对外开放接口

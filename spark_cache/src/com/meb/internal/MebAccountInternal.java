@@ -9,6 +9,7 @@ import com.common.util.MailUtil;
 import com.common.util.RespUtils;
 import com.meb.consts.MebConsts.IsRegByTel;
 import com.meb.consts.MebConsts.LoginByAccount;
+import com.meb.consts.MebConsts.UpdateAccount;
 import com.meb.consts.MebConsts.UpdatePwdByMess;
 import com.meb.consts.MebConsts.UpdatePwdConfirm;
 import com.meb.dao.MebAccountDao;
@@ -110,6 +111,28 @@ public class MebAccountInternal {
 			//成功之后发送邮件
 			if(!MailUtil.sendMail(email, password))
 				log.info("uid: "+uid+"**发送邮件失败！！！");
+		}
+		return outMap;
+	}
+	
+	/**
+	 * 更新账号
+	 * @param inMap
+	 * @return
+	 * @throws Exception
+	 * @author YXD
+	 */
+	public ParaMap updateAccount(ParaMap inMap) throws Exception{
+		ParaMap outMap = new ParaMap();
+		ParaMap conditionInMap = new ParaMap();
+		String uid = inMap.getString("uid");
+		conditionInMap.put("uid", uid);
+		conditionInMap.put("status", 1);
+		outMap = maDao.updateMebAccount(inMap, conditionInMap);
+		if(outMap.getInt("num") == 0){
+			outMap = RespUtils.resFail(UpdateAccount.FAIL_UPDATE_ACCOUNT.code, UpdateAccount.FAIL_UPDATE_ACCOUNT.mes);
+		}else{
+			outMap = RespUtils.resSuccess(UpdateAccount.SUCC_UPDATE_ACCOUNT.code,UpdateAccount.SUCC_UPDATE_ACCOUNT.mes);
 		}
 		return outMap;
 	}

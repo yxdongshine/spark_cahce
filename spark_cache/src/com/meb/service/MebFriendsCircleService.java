@@ -133,8 +133,8 @@ public class MebFriendsCircleService extends BaseService {
 		if (StrUtils.isNull(inMap.getString("content"))) {
 			return RespUtils.resFail(AddMebCommentInfo.ERR_CONTENT_NULL.code, AddMebCommentInfo.ERR_CONTENT_NULL.mes);
 		}
-		if (StrUtils.isNull(inMap.getString("parent_id"))) {
-			return RespUtils.resFail(AddMebCommentInfo.ERR_PARENT_ID_NULL.code, AddMebCommentInfo.ERR_PARENT_ID_NULL.mes);
+		if (StrUtils.isNull(inMap.getString("type"))) {
+			return RespUtils.resFail(AddMebCommentInfo.ERR_TYPE_NULL.code, AddMebCommentInfo.ERR_TYPE_NULL.mes);
 		}
 		
 		outMap = mcInternal.addMebCommentInfo(inMap);

@@ -1,12 +1,14 @@
 <!--会员信息维护模块-->
 <dataset>
 	<sql name="getMebListByLogin" memo="获取会员列表根据登录日志">
-		SELECT mi.uid,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
+		SELECT mi.uid,ma.account,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
 		mip.photo,mi.`status`,mip.sex,mi.createtime AS reg_time,mip.height,
-		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email
+		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email,
+		mip.address,mip.age 
 		FROM meb_info mi 
 		LEFT JOIN meb_info_per mip ON mi.uid = mip.uid 
 		LEFT JOIN meb_log_login mll ON mll.uid = mi.uid 
+		LEFT JOIN meb_account ma ON ma.uid = mi.uid
 		WHERE 1 = 1
 		AND mi.`status` = 1
 		$dynamicsql
@@ -14,12 +16,14 @@
 	</sql>
 
 	<sql name="getMebListByReg" memo="获取会员列表根据注册日志">
-		SELECT mi.uid,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
+		SELECT mi.uid,ma.account,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
 		mip.photo,mi.`status`,mip.sex,mi.createtime AS reg_time,mip.height,
-		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email
+		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email,
+		mip.address,mip.age 
 		FROM meb_info mi 
 		LEFT JOIN meb_info_per mip ON mi.uid = mip.uid 
-		LEFT JOIN meb_log_reg mlr ON mlr.uid = mi.uid 
+		LEFT JOIN meb_log_reg mlr ON mlr.uid = mi.uid
+		LEFT JOIN meb_account ma ON ma.uid = mi.uid
 		WHERE 1 = 1
 		AND mi.`status` = 1
 		$dynamicsql
@@ -27,12 +31,14 @@
 	</sql>
 	
 	<sql name="getMebListByNear" memo="获取会员列表根据附近">
-		SELECT mi.uid,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
+		SELECT mi.uid,ma.account,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
 		mip.photo,mi.`status`,mip.sex,mi.createtime AS reg_time,mip.height,
-		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email
+		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email,
+		mip.address,mip.age 
 		FROM meb_info mi 
 		LEFT JOIN meb_info_per mip ON mi.uid = mip.uid 
-		LEFT JOIN meb_log_login mll ON mll.uid = mi.uid 
+		LEFT JOIN meb_log_login mll ON mll.uid = mi.uid
+		LEFT JOIN meb_account ma ON ma.uid = mi.uid 
 		WHERE 1 = 1
 		AND mi.`status` = 1
 		$dynamicsql

@@ -61,6 +61,7 @@ public class MebInternal {
 		mebData.put("height", inMap.getString("height"));
 		mebData.put("email", inMap.getString("email"));
 		mebData.put("photo", inMap.getString("photo"));
+		mebData.put("address", inMap.getString("address"));
 
 		ParaMap mebResult = mebDao.addPerMeb(mebData);
 		if(!DataSetUtil.addSuccess(mebResult)){

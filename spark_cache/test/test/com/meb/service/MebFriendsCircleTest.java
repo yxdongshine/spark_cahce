@@ -96,6 +96,7 @@ public class MebFriendsCircleTest extends TestCase{
 	
 	public void testGetMebFriendsCircleList() throws Exception{
 		ParaMap inMap = new ParaMap();
+		//inMap.put("uid", "10000000");
 		inMap.put("page_size", "10");
 		inMap.put("page_index", "1");
 		ParaMap outMap = mfcService.getMebFriendsCircleList(inMap);

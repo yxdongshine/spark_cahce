@@ -7,10 +7,12 @@
 	<sql name="getMebInfo" memo="获取基本用户详细信息">
 		SELECT mi.uid,mip.tel,mip.nickname,mip.realname,mip.identity_number, 
 		mip.photo,mi.`status`,mip.sex,mi.createtime AS reg_time,mip.height,mip.age,
-		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email
+		mip.body_type,mip.education,mip.drinking,mip.smoking,mip.pets,mip.email,
+		mip.address,ma.account 
 		FROM meb_info mi 
 		LEFT JOIN meb_info_per mip ON mi.uid = mip.uid 
-		LEFT JOIN meb_log_reg reg ON reg.uid=mi.uid 
+		LEFT JOIN meb_log_reg reg ON reg.uid=mi.uid
+		LEFT JOIN meb_account ma ON ma.uid=mi.uid  
 		WHERE 1 = 1    
 		$dynamicsql
 	</sql>

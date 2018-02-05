@@ -45,11 +45,11 @@ public class MebFollowTest extends TestCase{
 	
 	public void testGetMebFriendsCircleList() throws Exception{
 		ParaMap inMap = new ParaMap();
-		inMap.put("f_uid", "20180118030100758617675254764375");
-		inMap.put("cover_uid", "20180118032653666459603142393974");
-		inMap.put("status", "0");
-		inMap.put("isvalid", "1");
-		inMap.put("id", "20180123104228794819742753660701");
+		//inMap.put("f_uid", "20180118030100758617675254764375");
+		//inMap.put("cover_uid", "20180118032653666459603142393974");
+		//inMap.put("status", "0");
+		//inMap.put("isvalid", "1");
+		//inMap.put("id", "20180123104228794819742753660701");
 		inMap.put("page_size", "10");
 		inMap.put("page_index", "1");
 		ParaMap outMap = mfService.getMebFollowList(inMap);
